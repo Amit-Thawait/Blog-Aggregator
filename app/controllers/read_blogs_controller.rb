@@ -23,7 +23,9 @@ class ReadBlogsController < ApplicationController
         post_tags.each do |post|
           @posts << post.text
         end
-        
+        aaaaaaaaaaaaa
+		aaaaaaaaaaaaaaa
+		bbbbbbbbbbb
         // write a logic so that each posts related to particular blog can be captured.
       end
       #logger.info "========titles============#{title.inspect}"

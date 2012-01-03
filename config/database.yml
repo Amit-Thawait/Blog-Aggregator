@@ -25,10 +25,10 @@ test:
   timeout: 5000
 
 production:
-  adapter: mysql
+  adapter: pg
   database: blog_aggregator
-  username: root
-  password: password
-  host: localhost
+  # username: root
+  # password: password
+  # host: localhost
   pool: 5
   timeout: 5000

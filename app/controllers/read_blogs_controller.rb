@@ -24,7 +24,7 @@ class ReadBlogsController < ApplicationController
           @posts << post.text
         end
         
-        // write a logic so that each posts related to particular blog can be captured.
+        # write a logic so that each posts related to particular blog can be captured.
       end
       #logger.info "========titles============#{title.inspect}"
   end

@@ -19,10 +19,16 @@ class ReadBlogsController < ApplicationController
         title_tag = @doc.xpath('//title')
         @blog_names << title_tag.text
         
-        post_tags = @doc.xpath('//li')
+        post_tags = @doc.xpath('//h3/a')
         post_tags.each do |post|
           @posts << post.text
         end
+        
+        @doc.xpath('//div[@dir = "ltr"]').each do |content|
+          @content << content.text  
+        end
+        
+        @author_name = @doc.xpath('//a[@class = "profile-name-link"]').text.strip
         
         # write a logic so that each posts related to particular blog can be captured.
       end

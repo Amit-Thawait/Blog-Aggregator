@@ -4,9 +4,11 @@ class ReadBlogsController < ApplicationController
   def index
       @blog_objects = Blog.get_all_blog_objects
       @blog_names = []
+      @posts = []
+      @content = []
+      @author_name = []
       
       @blog_objects.each do |blog_obj|
-        @posts = []
         @doc = Nokogiri::XML(open("#{blog_obj.blog_url}"))
         logger.info "===============#{@doc.inspect}"  
         Nokogiri::XML::ParseOptions::STRICT | Nokogiri::XML::ParseOptions::NOENT  

@@ -44,3 +44,5 @@ group :test, :development do
 end
 
 gem 'heroku'
+
+gem 'rake','0.9.2.2' 

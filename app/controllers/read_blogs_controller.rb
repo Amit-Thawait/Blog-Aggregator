@@ -23,8 +23,21 @@ class ReadBlogsController < ApplicationController
         
         post_tags = @doc.xpath('//h3/a')
         post_tags.each do |post|
-          @posts << post.text
+          @posts << post.
         end
+
+        
+        # this can be used to capture time
+        doc.xpath('//abbr').each do |time|
+          puts "=====#{time['title'].class}"
+        end
+        
+        #"2012-01-04T06:40:00-08:00".to_s > "2012-01-04T06:39:00-08:00".to_s
+        
+        # post_tags = @doc.css('h3>a')
+        # post_tags.each do |post|
+          # @posts << post
+        # end
         
         @doc.xpath('//div[@dir = "ltr"]').each do |content|
           @content << content.text  

@@ -1,5 +1,24 @@
-<% @blog_names.each do |blog_name| %>
-<%= blog_name %>
+<h3> Blog Aggregator</h3>
+<ul>	
+ <% @blogs.each do |key,value| %>
+	<li><lable>Blog Title: </lable><%= key %></li>
+	<%logger.info "=========key===========#{key.inspect}"%>
+	<%logger.info "=========value===========#{value.inspect}"%>
+	<li>
+		<lable>Blog Posts: </lable>
+		<ul style="margin:10px;">
+			<%  value.each do |k,v| %>
+			<%logger.info "=========k===========#{k.inspect}"%>
+			<%logger.info "=========v===========#{v.inspect}"%>
+			  <li>Post Title : <a href="<%= v[:post_url] %>" target="_blank"><%= v[:post_title] %></a></li>
+			  <li>Post Content: <%= v[:content]%></li>
+			  <li>Post Author: <%= v[:post_author]%></li>
+			  <li>Posted On: <%= v[:post_date] %></li>
+			  <br/>
+			<% end%>
+		</ul>
+	</li>	
+ <% end %>
+</ul>
 <br/>
-<% end %>
-
+<%= link_to 'New Blog', new_blog_path %> 

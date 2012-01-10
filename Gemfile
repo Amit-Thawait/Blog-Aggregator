@@ -8,9 +8,6 @@ gem 'rails', '3.1.3'
 group :development, :test do
   gem 'mysql','2.8.1'
 end
-group :production do
-  gem 'thin'
-end
 
 gem 'json'
 

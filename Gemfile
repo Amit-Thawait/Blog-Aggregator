@@ -44,4 +44,4 @@ end
 
 gem 'heroku'
 
-gem 'bundler','1.0.21'
+gem 'bundler','1.1.rc.7'

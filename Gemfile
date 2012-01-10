@@ -9,7 +9,6 @@ group :development, :test do
   gem 'mysql','2.8.1'
 end
 group :production do
-  gem 'pg'
   gem 'thin'
 end
 
@@ -44,3 +43,5 @@ group :test, :development do
 end
 
 gem 'heroku'
+
+gem 'bundler','1.0.21'

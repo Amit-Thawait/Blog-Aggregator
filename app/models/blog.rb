@@ -37,5 +37,5 @@ class Blog < ActiveRecord::Base
      sreturn false      
    end
   end  
-    
+
 end

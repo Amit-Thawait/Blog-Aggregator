@@ -1,0 +1,21 @@
+<ul class="art-hmenu">
+		<li>
+			<%= link_to '<span class="l"></span><span class="r"></span><span class="t">Home</span>'.html_safe, read_blogs_path,:id=>"home",:class=>"active" %> 
+			<!-- <a href="#" class="active"><span class="l"></span><span class="r"></span><span class="t">Home</span></a> -->
+		</li>	
+		<li>
+			<%= link_to '<span class="l"></span><span class="r"></span><span class="t">New Blog Url</span>'.html_safe, new_blog_path,:id=>"new_blog"%> 
+		</li>	
+	</ul>
+	
+<script>
+$(document).ready(function(){
+	<% if params[:controller] == "read_blogs" %>
+	 $('#home').addClass('active');
+	 $('#new_blog').removeClass('active');
+	 <% else %>
+	  $('#new_blog').addClass('active');
+	  $('#home').removeClass('active');
+	 <% end %>
+});
+</script>

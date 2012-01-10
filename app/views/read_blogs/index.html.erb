@@ -1,5 +1,19 @@
-<% @blog_names.each do |blog_name| %>
-<%= blog_name %>
-<br/>
-<% end %>
+
+<% @blog_objects.each do |key,value| %>	
+ <ul style="margin:10px;">
+			  <li><span style="font-size:14px;"><%= value[:blog_title]  %></span>
+			  	<br/>
+			  	<%= value[:post_date] %>
+			  	<br/>
+			  	<strong><a href="<%= value[:post_title][:url] %>" target="_blank"><%= value[:post_title][:title] %></a></strong>
+			  	<p>
+			  		<%= value[:post_content]%>
+			  	</p>
+			  	<p>
+			  		Posted by  <%= value[:author]%>
+			  	</p>
+			  </li>
+			 
+	</ul>	
+ <% end %>
 

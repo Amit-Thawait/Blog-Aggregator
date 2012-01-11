@@ -14,6 +14,7 @@ class Blog < ActiveRecord::Base
     @blogs_hash = Hash.new  
     blogs.each do |blog|        
       @doc = Nokogiri::HTML(open("#{blog.blog_url}"))     
+      logger.info "========@doc=========#{@doc.inspect}"
       @doc.css('div.post').each do |node|       
         post_details = Hash.new
         title_url = node.css('h3.post-title a')

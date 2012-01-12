@@ -4,17 +4,15 @@ class Blog < ActiveRecord::Base
   validates_presence_of :blog_url
   require 'open-uri'
   
-  def self.get_all_blog_objects
+  def self.get_blog_objects
     Blog.all
   end
   
   # Method to read blogs and their posts
-  def self.read_blogs
-    blogs = Blog.all
+  def self.read_blogs(options)  
     @blogs_hash = Hash.new  
-    blogs.each do |blog|        
+    options[:blogs].each do |blog|        
       @doc = Nokogiri::HTML(open("#{blog.blog_url}"))     
-      logger.info "========@doc=========#{@doc.inspect}"
       @doc.css('div.post').each do |node|       
         post_details = Hash.new
         title_url = node.css('h3.post-title a')
@@ -31,12 +29,5 @@ class Blog < ActiveRecord::Base
      return @blogs_hash.sort.reverse
   end
   
-  def valid_url(url)
-   if url.match('/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix') 
-     return true
-   else
-     return false      
-   end
-  end  
 
 end

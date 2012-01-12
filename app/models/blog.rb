@@ -19,7 +19,7 @@ class Blog < ActiveRecord::Base
         post_details = Hash.new
         title_url = node.css('h3.post-title a')
         post_details[:post_title] = {:title => node.css('h3.post-title').text,:url => title_url[0]['href'] }  
-        post_details[:post_content] = node.css('div.post-body').text
+        post_details[:post_content] = node.css('div.post-body').inner_html.chomp
         post_details[:author] = node.css('span.fn').text  
         post_details[:blog_title] = @doc.css('h1.title').text
         published_date = node.css('abbr.published') 
@@ -35,7 +35,7 @@ class Blog < ActiveRecord::Base
    if url.match('/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix') 
      return true
    else
-     sreturn false      
+     return false      
    end
   end  
 

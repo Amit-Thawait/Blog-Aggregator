@@ -5,9 +5,9 @@
 			  	<%= value[:post_date] %>
 			  	<br/>
 			  	<strong><a href="<%= value[:post_title][:url] %>" target="_blank"><%= value[:post_title][:title] %></a></strong>
-			  	<p>
-			  		<%= value[:post_content]%>
-			  	</p>
+			  	<pre>
+			  		<%= value[:post_content].html_safe %>
+			  	</pre>
 			  	<p>
 			  		Posted by  <%= value[:author]%>
 			  	</p>

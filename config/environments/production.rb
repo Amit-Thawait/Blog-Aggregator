@@ -58,6 +58,6 @@ Amit::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.assets.precompile += %w( jquery.js script.js style.css  )
+  config.assets.precompile += %w( jquery.js script.js style.css rails.js )
 
 end

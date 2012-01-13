@@ -1,4 +1,3 @@
-
 <% @blog_objects.each do |key,value| %>	
  <ul style="margin:10px;" id='content'>
 			  <li><span style="font-size:14px;"><%= value[:blog_title]  %></span>
@@ -17,5 +16,5 @@
 	</ul>	
  <% end %>
  <br/>
- <%= will_paginate @blogs %>
+ <%#= will_paginate @blogs %>
 

@@ -13,7 +13,7 @@
   <tr>
     <td><%= blog.blogger_name %></td>
     <td><%= blog.blog_url %></td>
-    <td><%= link_to 'Read', read_blogs_path(:blog_id => blog.id) %></td>
+    <td><%= link_to 'Show', blog_path(blog)%></td>
     <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
     <td><%= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
@@ -22,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New Blog', new_blog_path %> | <%= link_to 'Read All Blogs',read_blogs_path%>
+<%= link_to 'New Blog', new_blog_path %>

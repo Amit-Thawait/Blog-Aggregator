@@ -1598,12 +1598,11 @@ div.art-footer img
   font-family: "Century Gothic",Arial,Helvetica,Sans-Serif !important;
 }
 
-/*pre{
-	min-height:10px;
-
-    width:750px;
-   
-}*/
+pre,.MsoNormal{
+	text-align: justify;
+    white-space: pre-line;
+    font-size:12px;
+}
 /* end PageFooter */
 
 /* begin LayoutCell, content */

@@ -1,5 +1,6 @@
 class ReadBlogsController < ApplicationController 
   def index
-      @blog_objects = Blog.read_blogs   
+      @blogs = Blog.get_blog_objects
+      @blog_objects = Blog.read_blogs(:blogs => @blogs)  
   end  
 end

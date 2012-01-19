@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xml:lang="en">
+	<head>
+		<title>Blog-Aggregator</title>
+		<%= javascript_include_tag 'jquery','rails','script'%>
+		<%= stylesheet_link_tag 'style'%> <!--[if IE 6]><link rel="stylesheet" href="style.ie6.css" type="text/css" media="screen" /><![endif]-->
+		<!--[if IE 7]><link rel="stylesheet" href="style.ie7.css" type="text/css" media="screen" /><![endif]-->
+		<!--  <%#= javascript_include_tag "jquery","script" %> -->
+		<!--     <script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="script.js"></script> -->
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div id="art-main">
+			<div class="art-header">
+				<div class="art-header-clip">
+					<div class="art-header-center">
+						<div class="art-header-png"></div>
+						<div class="art-header-jpeg"></div>
+					</div>
+				</div>
+				<div class="art-header-wrapper">
+					<div class="art-header-inner">
+						<div class="art-logo">
+							<h1 class="art-logo-name"> <%= link_to 'Blog Aggregator',read_blogs_path%> </h1>
+							<h2 class="art-logo-text"></h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cleared reset-box"></div>
+			<div class="art-nav">
+				<div class="art-nav-outer">
+					<div class="art-nav-wrapper">
+						<div class="art-nav-inner">
+							<%= render :partial=>"/layouts/navigation_links" %>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cleared reset-box"></div>
+
+			<div class="art-sheet" style="margin:25px 180px -5px;width:820px">
+				<div class="art-sheet-tl"></div>
+				<div class="art-sheet-tr"></div>
+				<div class="art-sheet-bl"></div>
+				<div class="art-sheet-br"></div>
+				<div class="art-sheet-tc"></div>
+				<div class="art-sheet-bc"></div>
+				<div class="art-sheet-cl"></div>
+				<div class="art-sheet-cr"></div>
+				<div class="art-sheet-cc"></div>
+				<div class="art-sheet-body">
+					<div class="art-content-layout">
+						<div class="art-content-layout-row">
+							<div class="art-layout-cell art-content">
+								<div class="art-post">
+									<div class="art-post-tl"></div>
+									<div class="art-post-tr"></div>
+									<div class="art-post-bl"></div>
+									<div class="art-post-br"></div>
+									<div class="art-post-tc"></div>
+									<div class="art-post-bc"></div>
+									<div class="art-post-cl"></div>
+									<div class="art-post-cr"></div>
+									<div class="art-post-cc"></div>
+									<div class="art-post-body">
+										<div class="art-post-inner art-article">
+										<!--	<h2 class="art-postheader"><img src="/images/postheadericon.png" width="32" height="32" alt="" /></h2>-->
+											<div class="cleared"></div>
+											<div class="art-postcontent">
+												<%= yield %>
+											</div>
+											<div class="cleared"></div>
+										</div>
+										<div class="cleared"></div>
+									</div>
+								</div>
+								<div class="cleared"></div>
+							</div>
+						</div>
+					</div>
+					<div class="cleared"></div>
+					<div class="art-footer">
+						<div class="art-footer-t"></div>
+						<div class="art-footer-l"></div>
+						<div class="art-footer-b"></div>
+						<div class="art-footer-r"></div>
+						<div class="art-footer-body">
+							<a href="#" class="art-rss-tag-icon" title="RSS"></a>
+							<div class="art-footer-text">
+								<!--     <p><a href="#">Link1</a> | <a href="#">Link2</a> | <a href="#">Link3</a></p> -->
+								<p>
+									Copyright © 2011. All Rights Reserved.
+								</p>
+							</div>
+							<div class="cleared"></div>
+						</div>
+					</div>
+					<div class="cleared"></div>
+				</div>
+			</div>
+			<div class="cleared"></div>
+			<!-- <p class="art-page-footer"><a href="http://www.2createawebsite.com/artisteer">Website Template created with Artisteer</a>.</p> -->
+		</div>
+	</body>
+</html>

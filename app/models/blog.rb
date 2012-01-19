@@ -9,10 +9,10 @@ class Blog < ActiveRecord::Base
   end
   
   # Method to read blogs and their posts
-  def self.read_blogs
-    blogs = Blog.all 
+  def self.read_blogs(options)
+    #blogs = Blog.all 
     @blogs_hash = Hash.new  
-    blogs.each do |blog|        
+   options[:blogs].each do |blog|        
       @doc = Nokogiri::HTML(open("#{blog.blog_url}"))     
       if @doc!= nil
         @doc.css('div.post').each do |node|       

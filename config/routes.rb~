@@ -6,7 +6,7 @@ Amit::Application.routes.draw do
     get "logout", :to => "devise/sessions#destroy"
   end 
 
-  root :to => 'blogs#index', :constraints => lambda {|r| r.env["warden"].authenticate? }
+    root :to => 'blogs#index', :constraints => lambda {|r| r.env["warden"].authenticate? }
 
   resources :blogs
 

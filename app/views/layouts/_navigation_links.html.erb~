@@ -7,7 +7,7 @@
 		<li>
 			<%= link_to '<span class="l"></span><span class="r"></span><span class="t">New Blog Url</span>'.html_safe, new_blog_path,:id=>"new_blog"%> 
 	        </li>
-		<li>    <%= link_to '<span class="r"></span><span class="t">Log Out</span>'.html_safe, logout_path %>
+		<li>    <%= link_to '<span class="1"></span><span class="r"></span><span class="t">Log Out</span>'.html_safe, logout_path %>
 		</li>	
 	</ul>
        <% end %>

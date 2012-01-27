@@ -1,5 +1,5 @@
 class ReadBlogsController < ApplicationController
-  	
+  before_filter :authenticate_admin!	
   def index
       @blogs = Blog.get_blog_objects
       @blog_objects = Blog.read_blogs(:blogs => @blogs)  

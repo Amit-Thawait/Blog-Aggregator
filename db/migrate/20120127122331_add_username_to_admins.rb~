@@ -1,4 +1,0 @@
-class AddUsernameToAdmins < ActiveRecord::Migration
-  def change
-  end
-end

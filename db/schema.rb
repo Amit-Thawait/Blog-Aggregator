@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20120131082436) do
   end
 
   create_table "posts", :force => true do |t|
+    t.string   "url"
     t.string   "title"
     t.text     "content"
     t.string   "author"

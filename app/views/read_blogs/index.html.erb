@@ -4,20 +4,21 @@
 <input type='hidden' id='show_per_page' />  
 <ul style="margin:10px;" id='content'>
 <% if @blog_objects && !@blog_objects.empty? %>
-<% @posts.each do |post| %>	 
-  <li><span style="font-size:14px;"><%= post.title  %></span>
+<% @posts.each do |post| %>  
+<% blog = Blog.find(post.blog_id)%>
+<li><span style="font-size:14px;"><%= blog.blog_title %></span>	 
+	<br/>	
+  	<%= post.post_date.strftime('%A ,%d %B %Y')  %>
   	<br/>
-  	<%= post.post_date %>
-  	<br/>
-  	
-  	<pre>
-  		<%= post.content.html_safe %>
-  	</pre>
-  	<p>
-  		Posted by  <%= post.author %>
-  	</p>
-  </li>	
- <% end %>
+  	<strong><a href="<%= post.url %>" target="_blank"><%= post.title %></a></strong>
+  	  	<pre>
+  	  		<%= post.content.html_safe %>
+  	    </pre>
+  	    <p>
+  		  Posted by  <%= post.author %>
+  	    </p>
+</li>	
+<% end %>
 </ul>
 <br/>
  <%#= will_paginate @blogs %>

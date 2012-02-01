@@ -1,9 +1,8 @@
 class ReadBlogsController < ApplicationController
   	
   def index
-    @blogs = Blog.get_blog_objects
-    @blog_objects = Blog.read_blogs(@blogs)
-    @posts = Post.all.sort
+    @blogs = Blog.all
+    @posts = Post.order("post_date DESC").page(params[:page])
   end  
   
 end

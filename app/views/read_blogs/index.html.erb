@@ -3,17 +3,18 @@
 <input type='hidden' id='current_page' />  
 <input type='hidden' id='show_per_page' />  
 <ul style="margin:10px;" id='content'>
-<% @blog_objects.each do |key,value| %>	 
-  <li><span style="font-size:14px;"><%= value[:blog_title]  %></span>
+<% if @blog_objects && !@blog_objects.empty? %>
+<% @posts.each do |post| %>	 
+  <li><span style="font-size:14px;"><%= post.title  %></span>
   	<br/>
-  	<%= value[:post_date] %>
+  	<%= post.post_date %>
   	<br/>
-  	<strong><a href="<%= value[:post_title][:url] %>" target="_blank"><%= value[:post_title][:title] %></a></strong>
+  	
   	<pre>
-  		<%= value[:post_content].html_safe %>
+  		<%= post.content.html_safe %>
   	</pre>
   	<p>
-  		Posted by  <%= value[:author]%>
+  		Posted by  <%= post.author %>
   	</p>
   </li>	
  <% end %>
@@ -30,6 +31,7 @@
 <% @blogs.each do |blog|%>
 <li><a href="<%= blog.blog_url%>" target="_blank"><%= blog.blogger_name%></a></li>
 <%end%>
+<% end %>
 </ul>
 </div> 
 -->

@@ -7,38 +7,9 @@ class Blog < ActiveRecord::Base
   #Associations goes here
   has_many :posts
   
-  def self.get_blog_objects
-    Blog.all
-  end
-  
-  # Method to read blogs and their posts
-  #def self.read_blogs(options)
-    #blogs = Blog.all 
-    #@blogs_hash = Hash.new  
-   #options[:blogs].each do |blog|        
-      #@doc = Nokogiri::HTML(open("#{blog.blog_url}"))     
-      #if @doc!= nil
-        #@doc.css('div.post').each do |node|       
-         # post_details = Hash.new
-          #title_url = node.css('h3.post-title a')
-         # post_details[:post_title] = {:title => node.css('h3.post-title').text,:url => title_url[0]['href'] }  
-          #post_details[:post_content] = node.css('div.post-body').inner_html.chomp
-         # post_details[:author] = node.css('span.fn').text  
-         # post_details[:blog_title] = @doc.css('h1.title').text
-         # published_date = node.css('abbr.published') 
-         # post_date = Time.parse(published_date[0]['title'].gsub('T'," "))    
-         # post_details[:post_date] = post_date.strftime('%A ,%d %B %Y')          
-         # @blogs_hash[published_date[0]['title'].gsub('T'," ")] = post_details 
-        #end 
-     #end
-     #end
-     #return @blogs_hash.sort.reverse
-  #end
-  
   #This method will read the posts of the blogs and stores it in DB. Currently we are showing the posts directly from the DB.
-  def self.read_blogs(blogs)    
-    blogs.each do |blog|
-      @doc = Nokogiri::HTML(open("#{blog.blog_url}"))
+  def read_posts(blog)
+    @doc = Nokogiri::HTML(open("#{blog.blog_url}"))
       if !@doc.nil?
         @doc.css('div.post').each do |node|
           @post = Post.new
@@ -55,7 +26,6 @@ class Blog < ActiveRecord::Base
           @post.save!
         end         
       end
-    end 
   end
   
 

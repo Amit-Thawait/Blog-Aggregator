@@ -41,10 +41,19 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = Blog.new(params[:blog])
+    @blog = Blog.new(params[:blog])  
     respond_to do |format|
       if @blog.save
-        @blog.read_posts(@blog)
+        #if @blog.blog_url == "http://patshaughnessy.net/" || "http://patshaughnessy.net"
+          #puts"@@@PAT"
+          #@blog.read_posts_priv1(@blog)
+        #elsif @blog.blog_url == "http://www.alexrothenberg.com/" || "http://www.alexrothenberg.com"
+          #puts"@@@@@ALEX"
+          #@blog.read_post_priv2(@blog)
+        #else
+          #puts"@@@BLOGGER"
+          @blog.read_posts(@blog)
+        #end        
         format.html { redirect_to @blog, :notice => 'Blog was successfully created.' }
         format.json { render :json => @blog, :status => :created, :location => @blog }
       else

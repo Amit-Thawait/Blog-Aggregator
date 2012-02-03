@@ -28,5 +28,47 @@ class Blog < ActiveRecord::Base
       end
   end
   
+  def read_posts_one(blog)
+     @doc = Nokogiri::HTML(open("#{blog.blog_url}"))
+       if !@doc.nil?
+         author_name = @doc.css('title').text
+         @doc.css('article.post').each do |node|
+           @post = Post.new
+           title_url = node.css('h1 a')           
+           @post.blog_id = blog.id
+           blog.blog_title = "#{author_name}'s blogs"
+           blog.save!
+           @post.url = "http://patshaughnessy.net" + title_url[0]['href']
+           @post.title = node.css('h1').text    
+           #content_data = node.css('section.content').inner_html.chomp
+           #@post.content = content_data.css('p a').last.attr('href')   
+           #links = "http://patshaughnessy.net/" + node.css('section.content').css('a').map{ |link| link['href']}.last
+           @post.content = node.css('section.content').inner_html.chomp         
+           @post.author = author_name
+           @post.post_date = node.css('span.date').text.to_date
+           @post.save!
+         end         
+       end
+  end
+  
+   def read_posts_two(blog)
+     @doc = Nokogiri::HTML(open("#{blog.blog_url}"))
+       if !@doc.nil?   
+         author_name = @doc.css('div#header h1').text
+         @doc.css('div.post').each do |node|
+         @post = Post.new
+         title_url = node.css('div.title a')
+         @post.blog_id = blog.id
+         blog.blog_title = "#{author_name}'s blogs"
+         blog.save!
+         @post.title = node.css('div.title').text
+         @post.post_date = node.css('div.date').text.to_date
+         @post.url = "http://www.alexrothenberg.com/" + title_url[0]['href']
+         @post.content  = node.css('div.extract').inner_html.chomp         
+         @post.author = author_name        
+         @post.save!
+         end         
+       end
+  end  
 
 end

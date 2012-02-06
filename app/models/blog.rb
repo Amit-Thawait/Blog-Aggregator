@@ -28,6 +28,9 @@ class Blog < ActiveRecord::Base
       end
   end
   
+  #This method is used to read posts from pat's blogs
+  #We know that separate method for each blog is not a good idea. It's quite difficult to write a generic method since everyone is following different styles for their blogs.
+  #Anyway we are trying to figure it out...
   def read_posts_one(blog)
      @doc = Nokogiri::HTML(open("#{blog.blog_url}"))
        if !@doc.nil?
@@ -38,12 +41,14 @@ class Blog < ActiveRecord::Base
            @post.blog_id = blog.id
            blog.blog_title = "#{author_name}'s blogs"
            blog.save!
-           @post.url = "http://patshaughnessy.net" + title_url[0]['href']
+           append_url = "http://patshaughnessy.net"
+           @post.url = append_url + title_url[0]['href']
            @post.title = node.css('h1').text    
            #content_data = node.css('section.content').inner_html.chomp
            #@post.content = content_data.css('p a').last.attr('href')   
-           #links = "http://patshaughnessy.net/" + node.css('section.content').css('a').map{ |link| link['href']}.last
-           @post.content = node.css('section.content').inner_html.chomp         
+           #links = "http://patshaughnessy.net/" + node.css('section.content').css('a').map{ |link| link['href']}.last           
+           content_orig = node.css('section.content').inner_html.chomp
+           @post.content = full_content(content_orig,append_url,full_string_content="")     
            @post.author = author_name
            @post.post_date = node.css('span.date').text.to_date
            @post.save!
@@ -51,6 +56,7 @@ class Blog < ActiveRecord::Base
        end
   end
   
+  #This method is used to read posts from Alex's blogs
    def read_posts_two(blog)
      @doc = Nokogiri::HTML(open("#{blog.blog_url}"))
        if !@doc.nil?   
@@ -69,6 +75,22 @@ class Blog < ActiveRecord::Base
          @post.save!
          end         
        end
+  end  
+
+ private
+  # This method is used to append the default pat's url to the link which it is missed
+  def full_content(content,link,full_string_content="")
+    c = content.partition('a href')
+    full_string_content << c[0] << c[1]
+    if !c[2].empty?
+      if c[2].include?('http')
+        full_string_content << full_content(c[2],link)
+      else
+        d = c[2].partition('/')     
+        full_string_content << d[0].to_s << link+d[1].to_s+d[2] 
+      end
+    end
+    full_string_content
   end  
 
 end

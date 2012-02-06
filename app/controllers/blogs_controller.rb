@@ -52,7 +52,7 @@ class BlogsController < ApplicationController
           #@blog.read_post_priv2(@blog)
         #else
           #puts"@@@BLOGGER"
-          @blog.read_posts(@blog)
+          @blog.read_posts_one(@blog)
         #end        
         format.html { redirect_to @blog, :notice => 'Blog was successfully created.' }
         format.json { render :json => @blog, :status => :created, :location => @blog }

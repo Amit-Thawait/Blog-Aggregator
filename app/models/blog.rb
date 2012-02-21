@@ -3,7 +3,7 @@ class Blog < ActiveRecord::Base
   validates_presence_of :blogger_name
   validates_presence_of :blog_url
   validates_format_of :blog_url, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
-  
+  validates_uniqueness_of :blog_url
   #Associations goes here
   has_many :posts
   
@@ -86,8 +86,9 @@ class Blog < ActiveRecord::Base
       if c[2].include?('http')
         full_string_content << full_content(c[2],link)
       else
-        d = c[2].partition('/')     
-        full_string_content << d[0].to_s << link+d[1].to_s+d[2] 
+        d = c[2].partition('/')
+        g = d[2].partition('>')
+        full_string_content << d[0].to_s << link+d[1].to_s + g[0] + " target='_blank'" + g[1] +g[2]
       end
     end
     full_string_content

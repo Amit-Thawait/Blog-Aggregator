@@ -6,7 +6,8 @@
 <% if @blogs && !@blogs.empty? %>
 <% @posts.each do |post| %>  
 <% blog = Blog.find(post.blog_id)%>
-<li><span style="font-size:14px;"><%= blog.blog_title %></span>	 
+<li>
+  <span style="font-size:14px;"><%= blog.blog_title %></span>
 	<br/>	
   	<%= post.post_date.strftime('%A ,%d %B %Y')  %>
   	<br/>
@@ -38,6 +39,301 @@
 </div> 
 -->
 <style>
+  body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #333333;
+    font-family: 'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    line-height: 24px;
+    margin: 0;
+}
+#layout {
+    overflow: hidden;
+    width: 900px;
+}
+#left {
+    float: right;
+    margin: 60px 14px 0;
+    overflow: hidden;
+    width: 800px;
+}
+h1 {
+    color: #880000;
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+h2 {
+    color: #880000;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 5px;
+    margin-top: 40px;
+}
+.date {
+    color: #CC0000;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: none;
+}
+.tag {
+    font-size: 14px;
+    font-weight: normal;
+}
+#banner {
+    background-color: #880000;
+    height: 25px;
+    width: 100%;
+}
+#menu {
+    float: right;
+    font: 14px Calibri,Tahoma,sans-serif;
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 3px;
+    white-space: nowrap;
+}
+#menu ul {
+    margin: 0;
+}
+#menu li {
+    display: inline;
+}
+#menu li a {
+    background: none repeat scroll 0 0 #880000;
+    color: #FFFFFF;
+    padding: 2px 1em;
+    text-decoration: none;
+}
+#menu li a.icon {
+    background: none repeat scroll 0 0 #880000;
+    color: #FFFFFF;
+    padding: 2px 2px 2px 4px;
+    text-decoration: none;
+}
+.name {
+    background: none repeat scroll 0 0 #880000;
+    color: #FFFFFF;
+    padding: 0.2em 1em;
+}
+#menu li a:hover {
+    background: none repeat scroll 0 0 #0088CC;
+    color: #FFFFFF;
+}
+.rss_icon {
+    border: 0 none;
+    padding-left: 1px;
+    padding-right: 2px;
+    vertical-align: text-bottom;
+}
+.twitter_icon {
+    border: 0 none;
+    padding-right: 2px;
+    vertical-align: text-bottom;
+}
+blockquote {
+    border-left: 1px solid #AAAAAA;
+    font-style: italic;
+    margin: 0 30px 1.5em;
+    padding: 0 0 0 10px;
+}
+#archive-table {
+    padding: 10px;
+}
+#archive-table td {
+    padding-left: 10px;
+}
+pre {
+    background: none repeat scroll 0 0 #F5F6E7;
+    border: 1px solid #BCBE9F;
+    font-family: Courier New,monospace;
+    font-size: 12px;
+    margin: 9px 18px;
+    overflow: hidden;
+    padding: 0 9px;
+}
+.CodeRay {
+    background-color: black;
+    border: 1px solid black;
+    color: #E6E0DB;
+    font-size: 12px;
+    overflow: auto;
+}
+.CodeRay pre {
+    background-color: black;
+    font-family: Monaco;
+    line-height: 16px;
+    margin: 0;
+    overflow: auto;
+    padding: 5px;
+}
+.CodeRay .an {
+    color: #E7BE69;
+}
+.CodeRay .c {
+    color: #AF1CD4;
+}
+.CodeRay .ch {
+    color: #509E4F;
+}
+.CodeRay .cl {
+    color: #A9A871;
+}
+.CodeRay .co {
+    color: #FFFFFF;
+}
+.CodeRay .fl {
+    color: #A4C260;
+}
+.CodeRay .fu {
+    color: #F7CD00;
+}
+.CodeRay .gv {
+    color: #D0CFFE;
+}
+.CodeRay .i {
+    color: #009C9B;
+}
+.CodeRay .il {
+    background: none repeat scroll 0 0 #151515;
+}
+.CodeRay .iv {
+    color: #F7CD00;
+}
+.CodeRay .pp {
+    color: #E7BE69;
+}
+.CodeRay .r {
+    color: #FF5C00;
+}
+.CodeRay .kw {
+    color: #FF5C00;
+}
+.CodeRay .rx {
+    color: #009C9B;
+}
+.CodeRay .s {
+    color: #00FF00;
+}
+.CodeRay .sy {
+    color: #009C9B;
+}
+.CodeRay .ta {
+    color: #E7BE69;
+}
+.CodeRay .pc {
+    color: #6C9CBD;
+}
+.CodeRay .error {
+    color: #FF0000;
+}
+.overlay {
+    background: none repeat scroll 0 0 #CCCCFF;
+    bottom: 0;
+    left: 0;
+    opacity: 0.35;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.container {
+    position: relative;
+}
+#copyright {
+    color: #333333;
+    font-family: 'Helvetica Neue',Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+#frame {
+    background: none repeat scroll 0 0 #FF9966;
+    border-bottom: 1px solid #666666;
+    border-right: 1px solid #666666;
+    color: #666666;
+    left: -3px;
+    position: relative;
+    text-align: left;
+    top: -3px;
+    width: 600px;
+}
+#header {
+    background: none repeat scroll 0 0 #C0C0C0;
+    font-family: Monaco;
+    font-size: 10px;
+    height: 20px;
+    line-height: 20px;
+    text-align: left;
+    width: 600px;
+}
+#header_left {
+    float: left;
+    text-align: left;
+    width: 300px;
+}
+#header_right {
+    float: right;
+    text-align: right;
+    vertical-align: middle;
+    width: 300px;
+}
+#header_right a.icon {
+    background: url("/images/down.png") repeat scroll 0 0 transparent;
+    display: block;
+    float: right;
+    height: 20px;
+    width: 20px;
+}
+#header_left a.icon {
+    background: url("/images/up.png") repeat scroll 0 0 transparent;
+    display: block;
+    float: left;
+    height: 20px;
+    width: 20px;
+}
+.navigation {
+    border-bottom: 1px solid;
+    font-size: 1em;
+    padding-bottom: 10px;
+    width: 100%;
+}
+.previous {
+    text-align: left;
+}
+.next {
+    text-align: right;
+}
+.index {
+    text-align: center;
+}
+.code {
+    background-color: #FFCCCC;
+    font-family: Monaco;
+    font-size: 14px;
+    padding: 2px;
+}
+.reminder {
+    background-color: #FFCCCC;
+    float: right;
+    font-size: 14px;
+    margin-bottom: 50px;
+    margin-left: 30px;
+    padding: 10px;
+}
+.tip-image {
+    left: -5px;
+    position: relative;
+    top: 5px;
+}
+.diagram-frame {
+    text-align: center;
+}
+
+  
+  
+
 #page_navigation a{
 	padding:3px;
 	border:1px solid gray;

@@ -43,17 +43,16 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(params[:blog])  
     respond_to do |format|
-      if @blog.save
-        #if @blog.blog_url == "http://patshaughnessy.net/" || "http://patshaughnessy.net"
-          #puts"@@@PAT"
-          #@blog.read_posts_priv1(@blog)
-        #elsif @blog.blog_url == "http://www.alexrothenberg.com/" || "http://www.alexrothenberg.com"
-          #puts"@@@@@ALEX"
-          #@blog.read_post_priv2(@blog)
-        #else
-          #puts"@@@BLOGGER"
-          @blog.read_posts_one(@blog)
-        #end        
+      if @blog.save     
+        urls1 = [ "http://patshaughnessy.net/","http://patshaughnessy.net"]
+        urls2= ["http://www.alexrothenberg.com/", "http://www.alexrothenberg.com"]
+       if urls1.include?(@blog.blog_url)      
+        @blog.read_posts_one(@blog) 
+       elsif urls2.include?(@blog.blog_url)      
+         @blog.read_posts_two(@blog)         
+       else       
+         @blog.read_posts(@blog)        
+        end
         format.html { redirect_to @blog, :notice => 'Blog was successfully created.' }
         format.json { render :json => @blog, :status => :created, :location => @blog }
       else
@@ -83,8 +82,8 @@ class BlogsController < ApplicationController
   # DELETE /blogs/1.json
   def destroy
     @blog = Blog.find(params[:id])
+    Post.delete_all(["id in (?)",@blog.posts.collect(&:id)])
     @blog.destroy
-
     respond_to do |format|
       format.html { redirect_to blogs_url }
       format.json { head :ok }
